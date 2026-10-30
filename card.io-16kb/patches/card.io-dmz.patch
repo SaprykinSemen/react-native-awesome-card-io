@@ -1,0 +1,13 @@
+diff --git a/opencv2/core/operations.hpp b/opencv2/core/operations.hpp
+index 1170fc4..af70d86 100644
+--- a/opencv2/core/operations.hpp
++++ b/opencv2/core/operations.hpp
+@@ -62,6 +62,8 @@
+     #else
+         #define CV_XADD(addr, delta) __atomic_fetch_add((_Atomic(int)*)(addr), (delta), 5)
+     #endif
++  #elif defined __ANDROID__
++    #define CV_XADD(addr, delta) __atomic_fetch_add((int*)(addr), (delta), __ATOMIC_SEQ_CST)
+   #elif __GNUC__*10 + __GNUC_MINOR__ >= 42
+ 
+     #if !(defined WIN32 || defined _WIN32) && (defined __i486__ || defined __i586__ || \

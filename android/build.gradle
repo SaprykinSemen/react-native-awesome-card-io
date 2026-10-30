@@ -10,7 +10,7 @@ buildscript {
             url 'https://maven.google.com/'
             name 'Google'
         }
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
@@ -19,7 +19,7 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+        mavenCentral()
         maven { url "$projectDir/../node_modules/react-native/android" }
     }
 }
@@ -54,5 +54,6 @@ repositories {
 
 dependencies {
     compileOnly "com.facebook.react:react-native:${safeExtGet('reactNativeVersion', '+')}"
-    implementation 'io.card:android-sdk:5.5.1'
+    // card.io, перезібраний під 16 KB page size (див. card.io-16kb/README.md); AAR лежить в android/local-maven
+    implementation 'io.card:android-sdk:5.5.1-16kb'
 }
